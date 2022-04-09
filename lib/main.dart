@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:game_library_app/home.dart';
+import 'package:game_library_app/providers/theme_provider.dart';
+import 'package:game_library_app/shared/app_theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: GameLibraryApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class GameLibraryApp extends ConsumerWidget {
+  const GameLibraryApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentTheme = ref.watch(themeProvider);
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.amber,
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: currentTheme.darkMode ? ThemeMode.dark : ThemeMode.light,
       home: const Home(),
     );
   }
