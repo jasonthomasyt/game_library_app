@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:game_library_app/providers/theme_provider.dart';
+import 'package:game_library_app/providers/app_theme_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -14,18 +14,15 @@ class _HomeState extends ConsumerState<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = ref.read(themeProvider).darkMode;
+    final isDarkMode = ref.read(appThemeStateProvider);
+    final _themeStateProvider = ref.read(appThemeStateProvider.notifier);
     final theme = Theme.of(context);
     return Scaffold(
       backgroundColor: theme.backgroundColor,
       floatingActionButton: FloatingActionButton(
         backgroundColor: theme.primaryColor,
         onPressed: () {
-          if (isDarkMode) {
-            ref.read(themeProvider.notifier).enableLightMode();
-          } else {
-            ref.read(themeProvider.notifier).enableDarkMode();
-          }
+          _themeStateProvider.toggleAppTheme(context, ref);
         },
         child: Icon(isDarkMode ? Icons.dark_mode : Icons.light_mode),
       ),

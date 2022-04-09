@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:game_library_app/home.dart';
-import 'package:game_library_app/providers/theme_provider.dart';
+import 'package:game_library_app/providers/app_theme_provider.dart';
 import 'package:game_library_app/shared/app_theme.dart';
+import 'package:game_library_app/utils/shared_utility.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final sharedPreferences = await SharedPreferences.getInstance();
   runApp(
-    const ProviderScope(
-      child: GameLibraryApp(),
+    ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
+      child: const GameLibraryApp(),
     ),
   );
 }
@@ -17,12 +24,12 @@ class GameLibraryApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTheme = ref.watch(themeProvider);
+    final currentTheme = ref.watch(appThemeStateProvider);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: currentTheme.darkMode ? ThemeMode.dark : ThemeMode.light,
+      theme: ref
+          .read(appThemeProvider)
+          .getAppThemeData(context, isDarkModeEnabled: currentTheme),
       home: const Home(),
     );
   }
