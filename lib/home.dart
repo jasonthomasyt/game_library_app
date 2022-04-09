@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_library_app/providers/app_theme_provider.dart';
+import 'package:game_library_app/widgets/main_menu.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -10,61 +11,24 @@ class Home extends ConsumerStatefulWidget {
 }
 
 class _HomeState extends ConsumerState<Home> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = ref.read(appThemeStateProvider);
+    final _isDarkMode = ref.read(appThemeStateProvider);
     final _themeStateProvider = ref.read(appThemeStateProvider.notifier);
-    final theme = Theme.of(context);
+    final _theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: theme.backgroundColor,
+      backgroundColor: _theme.backgroundColor,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: theme.primaryColor,
+        backgroundColor: _theme.primaryColor,
         onPressed: () {
           _themeStateProvider.toggleAppTheme(context, ref);
         },
-        child: Icon(isDarkMode ? Icons.dark_mode : Icons.light_mode),
+        child: Icon(_isDarkMode ? Icons.dark_mode : Icons.light_mode),
       ),
       appBar: AppBar(
         title: const Text('Game Library'),
       ),
-      body: Row(
-        children: [
-          NavigationRail(
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: (int index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            labelType: NavigationRailLabelType.selected,
-            destinations: const [
-              NavigationRailDestination(
-                icon: Icon(Icons.gamepad_outlined),
-                selectedIcon: Icon(Icons.gamepad),
-                label: Text('Library'),
-              ),
-              NavigationRailDestination(
-                icon: Icon(Icons.explore_outlined),
-                selectedIcon: Icon(Icons.explore),
-                label: Text('Explore'),
-              ),
-              NavigationRailDestination(
-                icon: Icon(Icons.account_circle_outlined),
-                selectedIcon: Icon(Icons.account_circle),
-                label: Text('My Profile'),
-              ),
-            ],
-          ),
-          Expanded(
-            child: Center(
-              // TODO: Swap out view based on the index selected
-              child: Text('selectedIndex: $_selectedIndex'),
-            ),
-          ),
-        ],
-      ),
+      body: const MainMenu(),
     );
   }
 }
