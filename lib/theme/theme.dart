@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final appThemeProvider = Provider<AppTheme>((ref) {
-  return AppTheme();
-});
-
-class AppTheme {
+class Theme {
   static final ThemeData _lightThemeData = ThemeData(
     primarySwatch: Colors.blue,
     brightness: Brightness.light,
@@ -17,7 +12,7 @@ class AppTheme {
     primaryColor: Colors.amber,
   );
 
-  ThemeData getAppThemeData(
+  ThemeData getThemeData(
     BuildContext context, {
     required bool isDarkModeEnabled,
   }) =>
