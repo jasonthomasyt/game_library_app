@@ -5,6 +5,6 @@ part 'game.g.dart';
 
 @freezed
 class Game with _$Game {
-  factory Game({int? id, String? name}) = _Game;
+  factory Game({int? id, String? name, String? image}) = _Game;
   factory Game.fromJson(Map<String, dynamic> json) => _$GameFromJson(json);
 }
