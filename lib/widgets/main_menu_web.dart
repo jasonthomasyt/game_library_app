@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:game_library_app/views/explore.dart';
+import 'package:game_library_app/views/library.dart';
+import 'package:game_library_app/views/my_profile.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({Key? key}) : super(key: key);
@@ -53,11 +56,11 @@ class _MainMenuState extends State<MainMenu> {
     // TODO: Swap out view based on the index selected
     switch (selectedIndex) {
       case 1:
-        return Text('$selectedIndex');
+        return const Explore();
       case 2:
-        return Text('$selectedIndex');
+        return const MyProfile();
       default:
-        return Text('$selectedIndex');
+        return const Library();
     }
   }
 }
