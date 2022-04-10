@@ -22,10 +22,13 @@ Game _$GameFromJson(Map<String, dynamic> json) {
 class _$GameTearOff {
   const _$GameTearOff();
 
-  _Game call({int? id, String? name, String? image}) {
+  _Game call(
+      {int? id,
+      @JsonKey(name: 'name') String? title,
+      @JsonKey(name: 'background_image') String? image}) {
     return _Game(
       id: id,
-      name: name,
+      title: title,
       image: image,
     );
   }
@@ -41,7 +44,9 @@ const $Game = _$GameTearOff();
 /// @nodoc
 mixin _$Game {
   int? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String? get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'background_image')
   String? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,7 +58,10 @@ mixin _$Game {
 abstract class $GameCopyWith<$Res> {
   factory $GameCopyWith(Game value, $Res Function(Game) then) =
       _$GameCopyWithImpl<$Res>;
-  $Res call({int? id, String? name, String? image});
+  $Res call(
+      {int? id,
+      @JsonKey(name: 'name') String? title,
+      @JsonKey(name: 'background_image') String? image});
 }
 
 /// @nodoc
@@ -67,7 +75,7 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
+    Object? title = freezed,
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
@@ -75,9 +83,9 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       image: image == freezed
           ? _value.image
@@ -92,7 +100,10 @@ abstract class _$GameCopyWith<$Res> implements $GameCopyWith<$Res> {
   factory _$GameCopyWith(_Game value, $Res Function(_Game) then) =
       __$GameCopyWithImpl<$Res>;
   @override
-  $Res call({int? id, String? name, String? image});
+  $Res call(
+      {int? id,
+      @JsonKey(name: 'name') String? title,
+      @JsonKey(name: 'background_image') String? image});
 }
 
 /// @nodoc
@@ -107,7 +118,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
+    Object? title = freezed,
     Object? image = freezed,
   }) {
     return _then(_Game(
@@ -115,9 +126,9 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       image: image == freezed
           ? _value.image
@@ -130,20 +141,25 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Game implements _Game {
-  _$_Game({this.id, this.name, this.image});
+  _$_Game(
+      {this.id,
+      @JsonKey(name: 'name') this.title,
+      @JsonKey(name: 'background_image') this.image});
 
   factory _$_Game.fromJson(Map<String, dynamic> json) => _$$_GameFromJson(json);
 
   @override
   final int? id;
   @override
-  final String? name;
+  @JsonKey(name: 'name')
+  final String? title;
   @override
+  @JsonKey(name: 'background_image')
   final String? image;
 
   @override
   String toString() {
-    return 'Game(id: $id, name: $name, image: $image)';
+    return 'Game(id: $id, title: $title, image: $image)';
   }
 
   @override
@@ -152,7 +168,7 @@ class _$_Game implements _Game {
         (other.runtimeType == runtimeType &&
             other is _Game &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.image, image));
   }
 
@@ -160,7 +176,7 @@ class _$_Game implements _Game {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
@@ -175,15 +191,20 @@ class _$_Game implements _Game {
 }
 
 abstract class _Game implements Game {
-  factory _Game({int? id, String? name, String? image}) = _$_Game;
+  factory _Game(
+      {int? id,
+      @JsonKey(name: 'name') String? title,
+      @JsonKey(name: 'background_image') String? image}) = _$_Game;
 
   factory _Game.fromJson(Map<String, dynamic> json) = _$_Game.fromJson;
 
   @override
   int? get id;
   @override
-  String? get name;
+  @JsonKey(name: 'name')
+  String? get title;
   @override
+  @JsonKey(name: 'background_image')
   String? get image;
   @override
   @JsonKey(ignore: true)

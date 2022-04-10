@@ -8,12 +8,12 @@ part of 'game.dart';
 
 _$_Game _$$_GameFromJson(Map<String, dynamic> json) => _$_Game(
       id: json['id'] as int?,
-      name: json['name'] as String?,
-      image: json['image'] as String?,
+      title: json['name'] as String?,
+      image: json['background_image'] as String?,
     );
 
 Map<String, dynamic> _$$_GameToJson(_$_Game instance) => <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
-      'image': instance.image,
+      'name': instance.title,
+      'background_image': instance.image,
     };
