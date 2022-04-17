@@ -1,12 +1,37 @@
 import 'package:flutter/material.dart';
 
+import 'package:game_library_app/api/get_games.dart';
+import 'package:game_library_app/features/explore/models/game.dart';
+import 'package:game_library_app/features/explore/widgets/game_card.dart';
+
 class Explore extends StatelessWidget {
-  const Explore({ Key? key }) : super(key: key);
+  const Explore({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.none ||
+            snapshot.data == null) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        final games = snapshot.data! as List<Game>;
+
+        return GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+          ),
+          itemCount: games.length,
+          itemBuilder: (context, index) {
+            final Game game = games[index];
+            return GameCard(title: game.title!, imageUrl: game.image!);
+          },
+        );
+      },
+      future: getGames(),
     );
   }
 }

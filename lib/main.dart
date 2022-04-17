@@ -23,12 +23,12 @@ class GameLibraryApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTheme = ref.watch(themeStateProvider);
+    final isDarkModeEnabled = ref.watch(themeStateProvider);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ref
           .read(themeProvider)
-          .getThemeData(context, isDarkModeEnabled: currentTheme),
+          .getThemeData(context, isDarkModeEnabled: isDarkModeEnabled),
       home: const Home(),
     );
   }

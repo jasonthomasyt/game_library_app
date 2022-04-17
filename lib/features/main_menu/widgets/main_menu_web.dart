@@ -27,14 +27,14 @@ class _MainMenuState extends State<MainMenu> {
           labelType: NavigationRailLabelType.selected,
           destinations: const [
             NavigationRailDestination(
-              icon: Icon(Icons.gamepad_outlined),
-              selectedIcon: Icon(Icons.gamepad),
-              label: Text('Library'),
-            ),
-            NavigationRailDestination(
               icon: Icon(Icons.explore_outlined),
               selectedIcon: Icon(Icons.explore),
               label: Text('Explore'),
+            ),
+            NavigationRailDestination(
+              icon: Icon(Icons.gamepad_outlined),
+              selectedIcon: Icon(Icons.gamepad),
+              label: Text('Library'),
             ),
             NavigationRailDestination(
               icon: Icon(Icons.account_circle_outlined),
@@ -53,11 +53,11 @@ class _MainMenuState extends State<MainMenu> {
   Widget _getView(int selectedIndex) {
     switch (selectedIndex) {
       case 1:
-        return const Explore();
+        return const Library();
       case 2:
         return const MyProfile();
       default:
-        return const Library();
+        return const Explore();
     }
   }
 }

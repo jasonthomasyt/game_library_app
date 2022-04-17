@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:game_library_app/constants/api_key.dart';
-import 'package:game_library_app/features/library/models/game.dart';
+import 'package:game_library_app/features/explore/models/game.dart';
 
 Future<List<Game>> getGames() async {
   try {
@@ -10,7 +10,6 @@ Future<List<Game>> getGames() async {
       'https://api.rawg.io/api/games',
       queryParameters: {
         'key': apiKey,
-        'page_size': 10,
       },
     );
 
