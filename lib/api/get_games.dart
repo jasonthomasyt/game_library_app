@@ -8,9 +8,7 @@ Future<List<Game>> getGames() async {
   try {
     var response = await Dio().get(
       'https://api.rawg.io/api/games',
-      queryParameters: {
-        'key': apiKey,
-      },
+      queryParameters: {'key': apiKey, 'page_size': 100},
     );
 
     final decodedResponse = jsonDecode(response.toString())['results'] as List;

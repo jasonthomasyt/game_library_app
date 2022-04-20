@@ -44,20 +44,16 @@ class _MainMenuState extends State<MainMenu> {
           ],
         ),
         Expanded(
-          child: _getView(_selectedIndex),
+          child: IndexedStack(
+            index: _selectedIndex,
+            children: const [
+              Explore(),
+              Library(),
+              MyProfile(),
+            ],
+          ),
         ),
       ],
     );
-  }
-
-  Widget _getView(int selectedIndex) {
-    switch (selectedIndex) {
-      case 1:
-        return const Library();
-      case 2:
-        return const MyProfile();
-      default:
-        return const Explore();
-    }
   }
 }
