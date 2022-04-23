@@ -6,7 +6,7 @@ import 'package:game_library_app/features/explore/models/game.dart';
 
 Future<List<Game>> getGames(int page, int pageSize) async {
   try {
-    var response = await Dio().get(
+    final response = await Dio().get(
       'https://api.rawg.io/api/games',
       queryParameters: {
         'key': apiKey,
@@ -15,9 +15,9 @@ Future<List<Game>> getGames(int page, int pageSize) async {
       },
     );
 
-    final decodedResponse = jsonDecode(response.toString())['results'] as List;
+    final results = (response.data as Map<String, dynamic>)['results'] as List;
 
-    return decodedResponse
+    return results
         .map((e) => Game.fromJson(e as Map<String, dynamic>))
         .toList();
   } catch (ex) {
