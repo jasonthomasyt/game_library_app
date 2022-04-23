@@ -4,11 +4,15 @@ import 'package:dio/dio.dart';
 import 'package:game_library_app/constants/api_key.dart';
 import 'package:game_library_app/features/explore/models/game.dart';
 
-Future<List<Game>> getGames() async {
+Future<List<Game>> getGames(int page, int pageSize) async {
   try {
     var response = await Dio().get(
       'https://api.rawg.io/api/games',
-      queryParameters: {'key': apiKey, 'page_size': 100},
+      queryParameters: {
+        'key': apiKey,
+        'page': page,
+        'page_size': pageSize,
+      },
     );
 
     final decodedResponse = jsonDecode(response.toString())['results'] as List;

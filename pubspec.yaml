@@ -35,6 +35,8 @@ dependencies:
     sdk: flutter
   freezed_annotation: ^1.1.0
   hooks_riverpod: ^1.0.3
+  infinite_scroll_pagination: ^3.1.0
+  json_annotation: ^4.4.0
   json_serializable: ^6.1.5
   shared_preferences: ^2.0.13
 

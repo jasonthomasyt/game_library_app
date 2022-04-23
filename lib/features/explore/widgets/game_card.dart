@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_library_app/features/explore/models/game.dart';
 import 'package:game_library_app/features/explore/widgets/game_card_text.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,10 +25,6 @@ class _GameCardState extends ConsumerState<GameCard> {
       duration: const Duration(milliseconds: 100),
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: NetworkImage(widget.imageUrl),
-          fit: BoxFit.cover,
-        ),
         borderRadius: const BorderRadius.all(
           Radius.circular(15.0),
         ),
@@ -48,9 +45,44 @@ class _GameCardState extends ConsumerState<GameCard> {
             isHover = val;
           });
         },
-        child: GameCardText(
-          title: widget.title,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(15.0),
+          ),
+          child: Image.network(
+            widget.imageUrl,
+            fit: BoxFit.cover,
+            loadingBuilder: (
+              BuildContext context,
+              Widget image,
+              ImageChunkEvent? loadingProgress,
+            ) {
+              if (loadingProgress == null) {
+                return Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    image,
+                    GameCardText(
+                      title: widget.title,
+                    ),
+                  ],
+                );
+              }
+
+              return Center(
+                child: CircularProgressIndicator(
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                      : null,
+                ),
+              );
+            },
+          ),
         ),
+        // child: GameCardText(
+        //   title: widget.title,
+        // ),
       ),
     );
   }
