@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'game.freezed.dart';
@@ -10,9 +9,7 @@ class Game with _$Game {
     int? id,
     @JsonKey(name: 'name') String? title,
     @JsonKey(name: 'background_image') String? imageUrl,
+    String? description,
   }) = _Game;
   factory Game.fromJson(Map<String, dynamic> json) => _$GameFromJson(json);
-
-  static NetworkImage getImageByUrl(String? imageUrl) =>
-      NetworkImage(imageUrl!);
 }

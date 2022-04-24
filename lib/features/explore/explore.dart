@@ -52,6 +52,7 @@ class _ExploreState extends State<Explore> {
       pagingController: _pagingController,
       builderDelegate: PagedChildBuilderDelegate<Game>(
         itemBuilder: (context, game, index) => GameCard(
+          gameId: game.id!,
           title: game.title!,
           imageUrl: game.imageUrl!,
         ),

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:game_library_app/constants/api_key.dart';
 import 'package:game_library_app/features/explore/models/game.dart';

@@ -33,6 +33,7 @@ dependencies:
   dio: ^4.0.6
   flutter:
     sdk: flutter
+  flutter_html: ^2.2.1
   freezed_annotation: ^1.1.0
   hooks_riverpod: ^1.0.3
   infinite_scroll_pagination: ^3.1.0

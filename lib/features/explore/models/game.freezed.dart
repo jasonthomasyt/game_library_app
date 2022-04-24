@@ -25,11 +25,13 @@ class _$GameTearOff {
   _Game call(
       {int? id,
       @JsonKey(name: 'name') String? title,
-      @JsonKey(name: 'background_image') String? imageUrl}) {
+      @JsonKey(name: 'background_image') String? imageUrl,
+      String? description}) {
     return _Game(
       id: id,
       title: title,
       imageUrl: imageUrl,
+      description: description,
     );
   }
 
@@ -48,6 +50,7 @@ mixin _$Game {
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'background_image')
   String? get imageUrl => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,7 +64,8 @@ abstract class $GameCopyWith<$Res> {
   $Res call(
       {int? id,
       @JsonKey(name: 'name') String? title,
-      @JsonKey(name: 'background_image') String? imageUrl});
+      @JsonKey(name: 'background_image') String? imageUrl,
+      String? description});
 }
 
 /// @nodoc
@@ -77,6 +81,7 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
     Object? id = freezed,
     Object? title = freezed,
     Object? imageUrl = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -91,6 +96,10 @@ class _$GameCopyWithImpl<$Res> implements $GameCopyWith<$Res> {
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -103,7 +112,8 @@ abstract class _$GameCopyWith<$Res> implements $GameCopyWith<$Res> {
   $Res call(
       {int? id,
       @JsonKey(name: 'name') String? title,
-      @JsonKey(name: 'background_image') String? imageUrl});
+      @JsonKey(name: 'background_image') String? imageUrl,
+      String? description});
 }
 
 /// @nodoc
@@ -120,6 +130,7 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? imageUrl = freezed,
+    Object? description = freezed,
   }) {
     return _then(_Game(
       id: id == freezed
@@ -134,6 +145,10 @@ class __$GameCopyWithImpl<$Res> extends _$GameCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -144,7 +159,8 @@ class _$_Game implements _Game {
   _$_Game(
       {this.id,
       @JsonKey(name: 'name') this.title,
-      @JsonKey(name: 'background_image') this.imageUrl});
+      @JsonKey(name: 'background_image') this.imageUrl,
+      this.description});
 
   factory _$_Game.fromJson(Map<String, dynamic> json) => _$$_GameFromJson(json);
 
@@ -156,10 +172,12 @@ class _$_Game implements _Game {
   @override
   @JsonKey(name: 'background_image')
   final String? imageUrl;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'Game(id: $id, title: $title, imageUrl: $imageUrl)';
+    return 'Game(id: $id, title: $title, imageUrl: $imageUrl, description: $description)';
   }
 
   @override
@@ -169,7 +187,9 @@ class _$_Game implements _Game {
             other is _Game &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description));
   }
 
   @override
@@ -177,7 +197,8 @@ class _$_Game implements _Game {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(imageUrl));
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(description));
 
   @JsonKey(ignore: true)
   @override
@@ -194,7 +215,8 @@ abstract class _Game implements Game {
   factory _Game(
       {int? id,
       @JsonKey(name: 'name') String? title,
-      @JsonKey(name: 'background_image') String? imageUrl}) = _$_Game;
+      @JsonKey(name: 'background_image') String? imageUrl,
+      String? description}) = _$_Game;
 
   factory _Game.fromJson(Map<String, dynamic> json) = _$_Game.fromJson;
 
@@ -206,6 +228,8 @@ abstract class _Game implements Game {
   @override
   @JsonKey(name: 'background_image')
   String? get imageUrl;
+  @override
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$GameCopyWith<_Game> get copyWith => throw _privateConstructorUsedError;

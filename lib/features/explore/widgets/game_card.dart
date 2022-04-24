@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:game_library_app/features/explore/models/game.dart';
 import 'package:game_library_app/features/explore/widgets/game_card_text.dart';
+import 'package:game_library_app/features/game_details/game_detail.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class GameCard extends ConsumerStatefulWidget {
   const GameCard({
     Key? key,
+    required this.gameId,
     required this.title,
     required this.imageUrl,
   }) : super(key: key);
 
+  final int gameId;
   final String title;
   final String imageUrl;
 
@@ -39,7 +41,17 @@ class _GameCardState extends ConsumerState<GameCard> {
         ],
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () async {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return GameDetail(
+                gameId: widget.gameId,
+                title: widget.title,
+              );
+            },
+          );
+        },
         onHover: (val) {
           setState(() {
             isHover = val;
@@ -80,9 +92,6 @@ class _GameCardState extends ConsumerState<GameCard> {
             },
           ),
         ),
-        // child: GameCardText(
-        //   title: widget.title,
-        // ),
       ),
     );
   }
