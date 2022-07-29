@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:game_library_app/features/explore/explore.dart';
+import 'package:game_library_app/features/library/library.dart';
+import 'package:game_library_app/features/main_menu/widgets/main_menu_mobile.dart';
 import 'package:game_library_app/features/main_menu/widgets/main_menu_web.dart';
+import 'package:game_library_app/features/my_profile/my_profile.dart';
 import 'package:game_library_app/state_management/providers/theme_provider.dart';
+import 'package:game_library_app/extensions/build_context_extensions.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -16,6 +21,10 @@ class _HomeState extends ConsumerState<Home> {
     final _isDarkMode = ref.read(themeStateProvider);
     final _themeStateProvider = ref.read(themeStateProvider.notifier);
     final _theme = Theme.of(context);
+    const int _selectedIndex = 0;
+
+    const pages = [Explore(), Library(), MyProfile()];
+
     return Scaffold(
       backgroundColor: _theme.backgroundColor,
       floatingActionButton: FloatingActionButton(
@@ -28,7 +37,14 @@ class _HomeState extends ConsumerState<Home> {
       appBar: AppBar(
         title: const Text('Game Library'),
       ),
-      body: const MainMenu(),
+      body: context.isMobile
+          ? Center(
+              child: pages[_selectedIndex],
+            )
+          : MainMenuWeb(selectedIndex: _selectedIndex),
+      bottomNavigationBar: context.isMobile
+          ? MainMenuMobile(selectedIndex: _selectedIndex)
+          : null,
     );
   }
 }

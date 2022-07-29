@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:game_library_app/api/get_games.dart';
+import 'package:game_library_app/extensions/build_context_extensions.dart';
 import 'package:game_library_app/features/explore/models/game.dart';
 import 'package:game_library_app/features/explore/widgets/game_card.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -44,8 +45,12 @@ class _ExploreState extends State<Explore> {
   @override
   Widget build(BuildContext context) {
     return PagedGridView<int, Game>(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 5,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: context.isMobile
+            ? 2
+            : context.isTablet
+                ? 3
+                : 4,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
       ),
