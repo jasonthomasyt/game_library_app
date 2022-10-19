@@ -9,16 +9,16 @@ class ThemeNotifier extends StateNotifier<bool> {
   final bool defaultDarkModeValue;
 
   void toggleTheme(BuildContext context, WidgetRef ref) {
-    final bool _isDarkModeEnabled =
+    final bool isDarkModeEnabled =
         ref.read(sharedUtilityProvider).isDarkModeEnabled();
-    final _toggleValue = !_isDarkModeEnabled;
+    final toggleValue = !isDarkModeEnabled;
 
     ref
         .read(sharedUtilityProvider)
-        .setDarkModeEnabled(value: _toggleValue)
+        .setDarkModeEnabled(value: toggleValue)
         .whenComplete(
           () => {
-            state = _toggleValue,
+            state = toggleValue,
           },
         );
   }

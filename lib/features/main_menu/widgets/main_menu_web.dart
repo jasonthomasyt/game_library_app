@@ -4,23 +4,31 @@ import 'package:game_library_app/features/library/library.dart';
 import 'package:game_library_app/features/my_profile/my_profile.dart';
 
 class MainMenuWeb extends StatefulWidget {
-  MainMenuWeb({Key? key, required int selectedIndex}) : super(key: key);
-  int selectedIndex = 0;
+  const MainMenuWeb({Key? key, required int selectedIndex}) : super(key: key);
+  final int selectedIndex = 0;
 
   @override
   State<MainMenuWeb> createState() => _MainMenuWebState();
 }
 
 class _MainMenuWebState extends State<MainMenuWeb> {
+  int index = 0;
+
+  @override
+  void initState() {
+    index = widget.selectedIndex;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         NavigationRail(
-          selectedIndex: widget.selectedIndex,
-          onDestinationSelected: (int index) {
+          selectedIndex: index,
+          onDestinationSelected: (int currentIndex) {
             setState(() {
-              widget.selectedIndex = index;
+              index = currentIndex;
             });
           },
           labelType: NavigationRailLabelType.selected,
@@ -44,7 +52,7 @@ class _MainMenuWebState extends State<MainMenuWeb> {
         ),
         Expanded(
           child: IndexedStack(
-            index: widget.selectedIndex,
+            index: index,
             children: const [
               Explore(),
               Library(),

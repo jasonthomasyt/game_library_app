@@ -15,10 +15,11 @@ class GameCard extends ConsumerStatefulWidget {
   final String title;
   final String imageUrl;
 
-  _GameCardState createState() => _GameCardState();
+  @override
+  GameCardState createState() => GameCardState();
 }
 
-class _GameCardState extends ConsumerState<GameCard> {
+class GameCardState extends ConsumerState<GameCard> {
   bool isHover = false;
 
   @override

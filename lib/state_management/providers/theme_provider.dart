@@ -8,6 +8,6 @@ final themeProvider = Provider<Theme>((ref) {
 });
 
 final themeStateProvider = StateNotifierProvider<ThemeNotifier, bool>((ref) {
-  final _isDarkMode = ref.read(sharedUtilityProvider).isDarkModeEnabled();
-  return ThemeNotifier(defaultDarkModeValue: _isDarkMode);
+  final isDarkMode = ref.read(sharedUtilityProvider).isDarkModeEnabled();
+  return ThemeNotifier(defaultDarkModeValue: isDarkMode);
 });

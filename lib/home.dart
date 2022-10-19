@@ -18,32 +18,32 @@ class Home extends ConsumerStatefulWidget {
 class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
-    final _isDarkMode = ref.read(themeStateProvider);
-    final _themeStateProvider = ref.read(themeStateProvider.notifier);
-    final _theme = Theme.of(context);
-    const int _selectedIndex = 0;
+    final isDarkMode = ref.read(themeStateProvider);
+    final currentThemeStateProvider = ref.read(themeStateProvider.notifier);
+    final theme = Theme.of(context);
+    const int selectedIndex = 0;
 
     const pages = [Explore(), Library(), MyProfile()];
 
     return Scaffold(
-      backgroundColor: _theme.backgroundColor,
+      backgroundColor: theme.backgroundColor,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: _theme.primaryColor,
+        backgroundColor: theme.primaryColor,
         onPressed: () {
-          _themeStateProvider.toggleTheme(context, ref);
+          currentThemeStateProvider.toggleTheme(context, ref);
         },
-        child: Icon(_isDarkMode ? Icons.dark_mode : Icons.light_mode),
+        child: Icon(isDarkMode ? Icons.dark_mode : Icons.light_mode),
       ),
       appBar: AppBar(
         title: const Text('Game Library'),
       ),
       body: context.isMobile
           ? Center(
-              child: pages[_selectedIndex],
+              child: pages[selectedIndex],
             )
-          : MainMenuWeb(selectedIndex: _selectedIndex),
+          : const MainMenuWeb(selectedIndex: selectedIndex),
       bottomNavigationBar: context.isMobile
-          ? MainMenuMobile(selectedIndex: _selectedIndex)
+          ? const MainMenuMobile(selectedIndex: selectedIndex)
           : null,
     );
   }

@@ -6,8 +6,8 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
 });
 
 final sharedUtilityProvider = Provider<SharedUtility>((ref) {
-  final _sharedPrefs = ref.watch(sharedPreferencesProvider);
-  return SharedUtility(sharedPreferences: _sharedPrefs);
+  final sharedPrefs = ref.watch(sharedPreferencesProvider);
+  return SharedUtility(sharedPreferences: sharedPrefs);
 });
 
 class SharedUtility {
