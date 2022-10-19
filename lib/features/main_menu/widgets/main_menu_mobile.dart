@@ -1,32 +1,22 @@
 import 'package:flutter/material.dart';
 
 class MainMenuMobile extends StatefulWidget {
-  const MainMenuMobile({Key? key, required int selectedIndex})
+  const MainMenuMobile(
+      {Key? key, required this.selectedIndex, required this.onItemTapped})
       : super(key: key);
-  final int selectedIndex = 0;
+  final int selectedIndex;
+  final ValueSetter<int> onItemTapped;
 
   @override
   State<MainMenuMobile> createState() => _MainMenuMobileState();
 }
 
 class _MainMenuMobileState extends State<MainMenuMobile> {
-  int index = 0;
-
-  @override
-  void initState() {
-    index = widget.selectedIndex;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: index,
-      onTap: (int currentIndex) {
-        setState(() {
-          index = currentIndex;
-        });
-      },
+      currentIndex: widget.selectedIndex,
+      onTap: widget.onItemTapped,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.explore_outlined),

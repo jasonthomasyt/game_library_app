@@ -16,12 +16,19 @@ class Home extends ConsumerStatefulWidget {
 }
 
 class _HomeState extends ConsumerState<Home> {
+  int selectedIndex = 0;
+
+  void onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDarkMode = ref.read(themeStateProvider);
     final currentThemeStateProvider = ref.read(themeStateProvider.notifier);
     final theme = Theme.of(context);
-    const int selectedIndex = 0;
 
     const pages = [Explore(), Library(), MyProfile()];
 
@@ -41,9 +48,11 @@ class _HomeState extends ConsumerState<Home> {
           ? Center(
               child: pages[selectedIndex],
             )
-          : const MainMenuWeb(selectedIndex: selectedIndex),
+          : MainMenuWeb(
+              selectedIndex: selectedIndex, onItemTapped: onItemTapped),
       bottomNavigationBar: context.isMobile
-          ? const MainMenuMobile(selectedIndex: selectedIndex)
+          ? MainMenuMobile(
+              selectedIndex: selectedIndex, onItemTapped: onItemTapped)
           : null,
     );
   }
