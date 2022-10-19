@@ -32,7 +32,21 @@ class _GameDetailState extends State<GameDetail> {
             if (snapshot.hasData) {
               final Game game = snapshot.data as Game;
               final Widget description = Html(data: game.description);
-              return description;
+              return Column(
+                children: [
+                  Expanded(
+                    child: Scrollbar(
+                      child: SingleChildScrollView(
+                        child: description,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Add To Library'),
+                  )
+                ],
+              );
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
