@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_library_app/extensions/build_context_extensions.dart';
 import 'package:game_library_app/state_management/providers/theme_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -27,7 +28,9 @@ class GameCardText extends ConsumerWidget {
         ),
         child: Text(
           title,
-          style: Theme.of(context).textTheme.headline5,
+          style: context.isMobile
+              ? Theme.of(context).textTheme.bodyLarge
+              : Theme.of(context).textTheme.headline5,
           overflow: TextOverflow.ellipsis,
         ),
       ),
