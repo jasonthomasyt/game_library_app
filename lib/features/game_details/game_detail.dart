@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:game_library_app/api/get_game_by_id.dart';
 import 'package:game_library_app/features/explore/models/game.dart';
@@ -55,6 +56,6 @@ class _GameDetailState extends State<GameDetail> {
           },
         ),
       ),
-    );
+    ).animate().scale();
   }
 }

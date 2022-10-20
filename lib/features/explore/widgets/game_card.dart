@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_library_app/features/explore/widgets/game_card_text.dart';
+import 'package:game_library_app/features/explore/widgets/game_card_thumbnail.dart';
 import 'package:game_library_app/features/game_details/game_detail.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -58,41 +59,7 @@ class GameCardState extends ConsumerState<GameCard> {
             isHover = val;
           });
         },
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(15.0),
-          ),
-          child: Image.network(
-            widget.imageUrl,
-            fit: BoxFit.cover,
-            loadingBuilder: (
-              BuildContext context,
-              Widget image,
-              ImageChunkEvent? loadingProgress,
-            ) {
-              if (loadingProgress == null) {
-                return Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    image,
-                    GameCardText(
-                      title: widget.title,
-                    ),
-                  ],
-                );
-              }
-
-              return Center(
-                child: CircularProgressIndicator(
-                  value: loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded /
-                          loadingProgress.expectedTotalBytes!
-                      : null,
-                ),
-              );
-            },
-          ),
-        ),
+        child: GameCardThumbnail(gameCard: widget),
       ),
     );
   }
