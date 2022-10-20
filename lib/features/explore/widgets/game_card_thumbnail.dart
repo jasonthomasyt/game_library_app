@@ -24,25 +24,23 @@ class GameCardThumbnail extends StatelessWidget {
           Widget image,
           ImageChunkEvent? loadingProgress,
         ) {
-          if (loadingProgress == null) {
-            return Stack(
-              fit: StackFit.expand,
-              children: [
-                image,
-                GameCardText(
-                  title: gameCard.title,
-                ),
-              ],
-            );
-          }
-
-          return Center(
-            child: CircularProgressIndicator(
-              value: loadingProgress.expectedTotalBytes != null
-                  ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes!
-                  : null,
-            ),
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              loadingProgress == null
+                  ? image
+                  : Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    ),
+              GameCardText(
+                title: gameCard.title,
+              ),
+            ],
           );
         },
       ),
