@@ -21,14 +21,14 @@ class GameCardThumbnail extends StatelessWidget {
         fit: BoxFit.cover,
         loadingBuilder: (
           BuildContext context,
-          Widget image,
+          Widget thumbnail,
           ImageChunkEvent? loadingProgress,
         ) {
           return Stack(
             fit: StackFit.expand,
             children: [
               loadingProgress == null
-                  ? image
+                  ? thumbnail
                   : Center(
                       child: CircularProgressIndicator(
                         value: loadingProgress.expectedTotalBytes != null
