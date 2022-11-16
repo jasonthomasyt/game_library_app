@@ -17,7 +17,7 @@ class GameCardThumbnail extends StatelessWidget {
         Radius.circular(15.0),
       ),
       child: Image.network(
-        gameCard.imageUrl,
+        gameCard.thumbnail,
         fit: BoxFit.cover,
         loadingBuilder: (
           BuildContext context,

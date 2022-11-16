@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:game_library_app/extensions/build_context_extensions.dart';
+import 'package:game_library_app/features/shared/models/game.dart';
 import 'package:game_library_app/features/shared/widgets/game_card.dart';
-import 'package:game_library_app/firestore/get_games_from_firestore.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-
-import '../shared/models/game.dart';
 
 class Library extends StatefulWidget {
   const Library({Key? key}) : super(key: key);
@@ -24,7 +21,7 @@ class _LibraryState extends State<Library> {
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator.adaptive());
         }
         return GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -38,11 +35,18 @@ class _LibraryState extends State<Library> {
           ),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (context, index) {
-            DocumentSnapshot game = snapshot.data!.docs[index];
+            DocumentSnapshot document = snapshot.data!.docs[index];
+            final Game game = Game(
+              id: document['id'],
+              title: document['name'],
+              description: document['description'],
+              thumbnail: document['background_image'],
+            );
+
             return GameCard(
-              gameId: game['id'],
-              title: game['name'],
-              imageUrl: game['background_image'],
+              gameId: game.id!,
+              title: game.title!,
+              thumbnail: game.thumbnail!,
             );
           },
         );

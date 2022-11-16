@@ -98,7 +98,7 @@ class _ExploreState extends State<Explore> {
               itemBuilder: (context, game, index) => GameCard(
                 gameId: game.id!,
                 title: game.title!,
-                imageUrl: game.thumbnail!,
+                thumbnail: game.thumbnail!,
               ),
             ),
           ),

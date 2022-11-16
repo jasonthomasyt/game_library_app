@@ -8,12 +8,12 @@ class GameCard extends ConsumerStatefulWidget {
     Key? key,
     required this.gameId,
     required this.title,
-    required this.imageUrl,
+    required this.thumbnail,
   }) : super(key: key);
 
   final int gameId;
   final String title;
-  final String imageUrl;
+  final String thumbnail;
 
   @override
   GameCardState createState() => GameCardState();
