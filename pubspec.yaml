@@ -43,7 +43,7 @@ dependencies:
   json_annotation: ^4.4.0
   json_serializable: ^6.1.5
   shared_preferences: ^2.0.13
-  flutter_animate: ^1.0.0
+  flutter_animate: ^2.0.1
 
 dev_dependencies:
   build_runner: ^2.1.8
