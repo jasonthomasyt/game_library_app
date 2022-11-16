@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "997821689958",
+    "project_id": "game-library-app-2f023",
+    "storage_bucket": "game-library-app-2f023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997821689958:android:115849f7cda94ea1aa7da7",
+        "android_client_info": {
+          "package_name": "com.example.game_library_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997821689958-8snmfumksmtl6nhcc9masi4pfukaeb6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJeYlwCPxhnbcsvvObHLdLy630u_hDBXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997821689958-8snmfumksmtl6nhcc9masi4pfukaeb6b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "997821689958-vu2fo4trl4h7isddsee47heo2u6v8d9s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gameLibraryApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
