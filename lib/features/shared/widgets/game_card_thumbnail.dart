@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game_library_app/features/explore/widgets/game_card.dart';
-import 'package:game_library_app/features/explore/widgets/game_card_text.dart';
+import 'package:game_library_app/features/shared/widgets/game_card.dart';
+import 'package:game_library_app/features/shared/widgets/game_card_text.dart';
 
 class GameCardThumbnail extends StatelessWidget {
   const GameCardThumbnail({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game_library_app/features/explore/widgets/game_card_thumbnail.dart';
-import 'package:game_library_app/features/game_details/game_detail.dart';
+import 'package:game_library_app/features/shared/widgets/game_card_thumbnail.dart';
+import 'package:game_library_app/features/shared/widgets/game_details/game_detail.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class GameCard extends ConsumerStatefulWidget {

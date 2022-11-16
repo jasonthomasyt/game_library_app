@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:game_library_app/constants/api_key.dart';
-import 'package:game_library_app/features/explore/models/game.dart';
+import 'package:game_library_app/features/shared/models/game.dart';
 
-Future<List<Game>> getGames(int page, int pageSize) async {
+Future<List<Game>> getGamesFromAPI(int page, int pageSize,
+    {String? search}) async {
   try {
     final response = await Dio().get(
       'https://api.rawg.io/api/games',
@@ -10,6 +11,9 @@ Future<List<Game>> getGames(int page, int pageSize) async {
         'key': apiKey,
         'page': page,
         'page_size': pageSize,
+        'search': search,
+        'exclude_stores': '9',
+        'exclude_additions': true,
       },
     );
 

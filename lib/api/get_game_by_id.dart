@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:game_library_app/constants/api_key.dart';
-import 'package:game_library_app/features/explore/models/game.dart';
+import 'package:game_library_app/features/shared/models/game.dart';
 
-Future<Game> getGameById(int gameId) async {
+Future<Game> getGameByIdFromAPI(int gameId) async {
   try {
     final response = await Dio().get(
       'https://api.rawg.io/api/games/$gameId',
